@@ -1,5 +1,5 @@
-import clientPromise from '@/lib/mongodb';
 import jwt from 'jsonwebtoken';
+import { tempStorage } from '@/lib/tempStorage';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -24,12 +24,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing booking details' });
     }
 
-    const client = await clientPromise;
-    const db = client.db('demo');
-    const bookings = db.collection('users');
-
     // Prevent double-booking for same slot by same user
-    const existing = await bookings.findOne({ userId, date, timeSlot });
+    const existing = tempStorage.bookings.findOne({ userId, date, timeSlot });
 
     if (existing) {
       return res.status(409).json({ error: 'You already booked this slot' });
@@ -43,7 +39,7 @@ export default async function handler(req, res) {
       createdAt: new Date()
     };
 
-    await bookings.insertOne(booking);
+    tempStorage.bookings.insertOne(booking);
 
     return res.status(200).json({ message: 'Booking confirmed', booking });
   } catch (error) {

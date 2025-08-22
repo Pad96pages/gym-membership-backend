@@ -1,6 +1,6 @@
-import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { tempStorage } from '@/lib/tempStorage';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -16,11 +16,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const client = await clientPromise;
-    const db = client.db('demo');
-    const collection = db.collection('users');
-
-    const user = await collection.findOne({ email });
+    const user = tempStorage.users.findOne({ email });
 
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });

@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "1755857043903",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "$2b$10$/N82ezirR3ybvTwJAySZjek.u4ID.i/9tOpoEGKaJpumkGhUNu2Ey",
+    "createdAt": "2025-08-22T10:04:03.903Z"
+  },
+  {
+    "_id": "1755857162971",
+    "name": "marvel",
+    "email": "demo@gmail.com",
+    "password": "$2b$10$9fo8HaECn2qkOfLMspq7yu9fuUNxOR.7JNOiq2lYLptG4xL9TGfu.",
+    "createdAt": "2025-08-22T10:06:02.971Z"
+  }
+]

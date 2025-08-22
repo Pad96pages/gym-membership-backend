@@ -1,5 +1,5 @@
-import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcryptjs';
+import { tempStorage } from '@/lib/tempStorage';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -13,19 +13,19 @@ export default async function handler(req, res) {
   }
 
   try {
-    const client = await clientPromise;
-    const db = client.db('demo');
-
-    const existingUser = await db.collection('users').findOne({ email });
+    // Check if user already exists
+    const existingUser = tempStorage.users.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ error: 'Email already exists' });
     }
 
+    // Hash password and create user
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.collection('users').insertOne({ name, email, password: hashedPassword });
+    tempStorage.users.insertOne({ name, email, password: hashedPassword });
 
     return res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    return res.status(500).json({ error: 'Server error' });
+    console.error('Registration Error:', error);
+    return res.status(500).json({ error: 'Server error', details: error.message });
   }
 }
