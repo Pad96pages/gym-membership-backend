@@ -1,4 +1,3 @@
-```markdown
 # 🏋️‍♂️ Gym Membership App
 
 A **full-stack web application** to manage gym memberships, bookings, and user interactions.  
@@ -26,10 +25,7 @@ This project builds upon my earlier [Gym Membership Backend](https://github.com/
 - **Validation:** Zod
 - **Email:** Nodemailer (via Gmail/SMTP)
 
----
-
 ## 📂 Project Structure
-```
 
 gym-membership/
 ├── app/
@@ -44,12 +40,9 @@ gym-membership/
 ├── package.json
 └── README.md
 
-````
-
----
 
 ### 1️⃣ Clone the repo
-```bash
+```
 git clone https://github.com/Pad96pages/gym-membership.git
 cd gym-membership
 ````
