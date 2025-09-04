@@ -26,7 +26,7 @@ This project builds upon my earlier [Gym Membership Backend](https://github.com/
 - **Email:** Nodemailer (via Gmail/SMTP)
 
 ## 📂 Project Structure
-
+```
 gym-membership/
 ├── app/
 │   ├── api/           # API routes (booking, contact, etc.)
@@ -39,7 +39,7 @@ gym-membership/
 ├── .env.local         # Environment variables
 ├── package.json
 └── README.md
-
+```
 
 ### 1️⃣ Clone the repo
 ```
